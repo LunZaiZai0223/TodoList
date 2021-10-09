@@ -1,0 +1,184 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  color: #606373;
+  height: 100%;
+  background-color: #f0efea;
+  display: flex;
+  align-items: center;
+  font-family: "Noto Sans TC", sans-serif;
+}
+body ul li {
+  list-style-type: none;
+}
+
+.container {
+  width: 85%;
+  max-width: 450px;
+  margin: 4rem auto;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 0.25rem;
+}
+.container header {
+  padding: 2rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.container header .date {
+  font-size: 3rem;
+  font-weight: 900;
+}
+.container header .day {
+  font-weight: 500;
+}
+.container header .date-month-year-container {
+  display: flex;
+  align-items: center;
+}
+.container header .month_year {
+  margin-left: 0.5rem;
+}
+.container header .month_year h3 {
+  font-size: 1rem;
+}
+.container header .month_year .month {
+  font-weight: 900;
+}
+.container header .month_year .year {
+  font-weight: 400;
+}
+.container ul li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 3rem;
+  transition: opacity 0.5s;
+  position: relative;
+}
+.container ul li:hover {
+  box-shadow: 0 0 5px #9b9b9b;
+}
+.container .content-btns-container {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+}
+.container .content-btns-container .content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+.container .content-btns-container .content span {
+  position: relative;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+.container ul li p {
+  flex: 100 100 auto;
+  position: relative;
+}
+.container ul li input {
+  position: relative;
+  cursor: pointer;
+  width: 29px;
+  height: 29px;
+  border-radius: 50%;
+}
+.container ul li input:after {
+  content: "";
+  position: absolute;
+  background-color: #fff;
+  border: 0.5px solid #9b9b9b;
+  width: 29px;
+  height: 29px;
+}
+.container ul li input:checked:after {
+  content: "✔︎";
+  color: #fff;
+  background-color: #50e3a4;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  border: none;
+  align-items: center;
+  width: 29px;
+  height: 29px;
+}
+.container .btn-group button {
+  background-color: transparent;
+  margin: 0 0 0 0.5rem;
+  padding: 0 0 0.5rem;
+  font-size: 1.2rem;
+  border: none;
+  cursor: pointer;
+}
+.container .btn-group button:hover {
+  border-bottom: 1px solid black;
+}
+.container form {
+  margin: 3rem 0;
+  padding: 0 3rem;
+}
+.container form label {
+  display: block;
+  width: 100%;
+  text-align: start;
+  margin: 0 0 0.5rem;
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+.container form .add-container {
+  display: flex;
+}
+.container form .add-container input {
+  flex: 1;
+  margin: 0 0.5rem 0 0;
+  padding: 0 1rem;
+  font-size: 1.2rem;
+  height: 3rem;
+  border: 1px solid #9b9b9b;
+  outline: none;
+  border-radius: 0.25rem;
+}
+.container form .add-container button {
+  flex: 1;
+  background-color: #50e3a4;
+  border: none;
+  font-size: 2rem;
+  color: #46be8c;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+.container .alert-message {
+  display: block;
+  text-align: start;
+  margin: 0.1rem;
+  font-size: 1rem;
+  color: red;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.is-done {
+  opacity: 0.4;
+}
+.is-done .content span:before {
+  content: "";
+  background-color: black;
+  position: absolute;
+  display: block;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 0.5px;
+  z-index: 999;
+}
+
+/*# sourceMappingURL=app.css.map */
