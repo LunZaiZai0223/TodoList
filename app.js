@@ -5,18 +5,16 @@ const dateContainer = document.querySelector('.container header');
 const form = document.querySelector('form');
 const ul = document.querySelector('ul');
 
-let str = '';
-
 function render () {
   let str = '';
   if (data.length === 0) {
-    return ul.innerHTML = `<li><p style="opacity: 0.5">ALL DONE!</p></li>`;
+    return ul.innerHTML = `<li class="all-done"><p style="opacity: 0.5;">ALL DONE!</p><img style="width: 100%;" src="https://c.tenor.com/n-BALMF_sC4AAAAi/kirby-kirby-line-sticker.gif"></li>`;
   }
   data.forEach((value, indexNum) => {
     const { assignment } = value;
     if (value.isDone === true) {
       str += `
-      <li class="is-done">
+      <li class="is-done" data-num=${indexNum}>
         <div class="input-container">
           <input type="checkbox" data-num="${indexNum}" checked>
         </div>
@@ -25,6 +23,7 @@ function render () {
             <span>${assignment}</span>
           </div>
           <div class="btn-group">
+            <button data-num="${indexNum}" class="edit-btn far fa-edit">
             <button data-num="${indexNum}" class="delete-btn far fa-trash-alt">
             </button>
           </div>
@@ -32,7 +31,7 @@ function render () {
       </li>`;
     } else {
       str += `
-      <li>
+      <li data-num=${indexNum}>
         <div class="input-container">
           <input type="checkbox" data-num="${indexNum}">
         </div>
@@ -41,6 +40,7 @@ function render () {
             <span>${assignment}</span>
           </div>
           <div class="btn-group">
+            <button data-num="${indexNum}" class="edit-btn far fa-edit">
             <button data-num="${indexNum}" class="delete-btn far fa-trash-alt">
             </button>
           </div>
@@ -108,8 +108,57 @@ function assignmentChecker () {
   // 如未有警示
   const alertMessage = document.createElement('span');
   alertMessage.classList.add('alert-message');
-  alertMessage.innerHTML = '我不也不知道您要做什麼耶';
+  alertMessage.innerHTML = '我也不知道您要做什麼耶';
   form.append(alertMessage);
+}
+function changeAssignment (event) {
+  if (event.key === 'Enter') {
+    console.log('修改開始');
+    const editInput = document.querySelectorAll('.edit-input');
+    for (let ed of editInput) {
+      const inputIndexNum = ed.dataset.num;
+      const previousAssignment = data[inputIndexNum].assignment;
+      const newAssignment = ed.value;
+      if (!newAssignment) {
+        data[inputIndexNum].assignment = previousAssignment;
+      } else {
+        data[inputIndexNum].assignment = newAssignment;
+      }
+      // 更新完（按下 Enter）後移除監聽，避免一直重複新增相同的監聽
+      document.removeEventListener('keydown', changeAssignment);
+      render();
+    }
+  } else if (event.key === 'Escape') {
+    // 取消更新完（按下 Escape）後移除監聽，避免一直重複新增相同的監聽
+    document.removeEventListener('keydown', changeAssignment);
+    render();
+  }
+}
+function editHandler (event) {
+  const indexNum = event.target.dataset.num;
+  // HTML 結構
+  // <li class="is-done" data-num=${indexNum}>
+  //   <div class="input-container">
+  //     <input type="checkbox" data-num="${indexNum}" checked>
+  //   </div>
+  //   <div class="content-btns-container">
+  //     <div class="content">
+  //       <span>${assignment}</span>
+  //     </div>
+  //     <div class="btn-group">
+  //       <button data-num="${indexNum}" class="edit-btn far fa-edit"></button>
+  //       <button data-num="${indexNum}" class="delete-btn far fa-trash-alt"></button>
+  //     </div>
+  //   </div>  
+  // </li>`
+  const contentDiv = ul.children[event.target.dataset.num].children[1].children[0];
+  contentDiv.innerHTML = 
+  `
+    <input class="edit-input" type="text" value=${data[indexNum].assignment} data-num="${indexNum}">
+  `;
+  document.addEventListener('keydown', changeAssignment);
+  // removeEventListener 要放在裡面，不能在外面。放在外面 = 給你監聽後馬上移除監聽
+  // document.removeEventListener('keydown', changeAssignment);
 }
 
 form.addEventListener('submit', (event) => {
@@ -125,6 +174,8 @@ form.addEventListener('input', () => {
 });
 ul.addEventListener('click', (event) => {
   const nodeName = event.target.nodeName.toUpperCase();
+  // 選到修改的 input 不加 class;
+  if (event.target.className.includes('edit-input')) { return; }
   if (nodeName === 'INPUT') {
   	toggleIsDoneClass(event);
     return changeIsDoneValue(event);
@@ -132,8 +183,13 @@ ul.addEventListener('click', (event) => {
   if (nodeName !== 'BUTTON') {
     return;
   }
+  if (event.target.className.includes('delete-btn')) {
   deletAssignment(event);
+  } else if (event.target.className.includes('edit-btn')) {
+    editHandler(event);
+    }
 });
+
 
 renderDate(today);
 render();
