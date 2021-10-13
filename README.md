@@ -3,6 +3,8 @@
 https://lunzaizai0223.github.io/TodoList/
 
 <img width="1259" alt="螢幕快照 2021-10-10 13 21 27" src="https://user-images.githubusercontent.com/77038018/136683368-36b46f72-1887-43a8-b33d-716bd680930d.png">
+<img width="268" alt="螢幕快照 2021-10-13 15 26 03" src="https://user-images.githubusercontent.com/77038018/137086666-5c8a191d-413e-4fe9-ab5d-a7c8118d6dfa.png">
+
 
 ## 小記
 版型參考：https://dribbble.com/shots/2451888-ToDo-List <br>
