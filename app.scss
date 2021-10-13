@@ -16,6 +16,12 @@ body {
   }
 }
 
+@mixin mobile {
+  @media(max-width: 450px) {
+    @content;
+  }
+}
+
 .container {
   width: 85%;
   // padding: 2rem 3rem;
@@ -24,11 +30,17 @@ body {
   text-align: center;
   background-color: #fff;
   border-radius: 0.25rem;
+  @include mobile {
+    margin:2rem auto;
+  }
   header {
   	padding: 2rem 3rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    @include mobile {
+      padding: 1rem 1.5rem;
+    }
     .date {
       font-size: 3rem;
       font-weight: 900;
@@ -64,15 +76,15 @@ body {
     padding: 1rem 3rem;
     transition: opacity 0.5s;
     position: relative;
+    @include mobile {
+      padding: 1rem 1.5rem;
+    }
     &:hover {
       box-shadow: 0 0 5px #9b9b9b;
     }
-    // &:last-child {
-    // border-bottom: 0.5px solid #9b9b9b;
-    // }
   }
-  .input-container {
-    // flex: 0.5 0.5 auto;
+  ul .all-done {
+    display: block;
   }
   .content-btns-container {
   	flex: 1;
@@ -93,7 +105,7 @@ body {
     flex: 100 100 auto;
     position: relative;
   }
-  ul li input {
+  ul li input[type="checkbox"] {
     position: relative;
     cursor: pointer;
     width: 29px;
@@ -132,10 +144,11 @@ body {
     }
   }
   form {
-    // display: flex;
-    // flex-wrap: wrap;
     margin: 3rem 0;
     padding: 0 3rem;
+    @include mobile {
+      padding: 0 1.5rem;
+    }
   }
   form label {
     display: block;
@@ -149,7 +162,9 @@ body {
     display: flex;
   }
   form .add-container input{
-    flex: 1;
+    // input 要設定 width，用 flex 時才會確實按照比例分空間
+    width: 100%;
+    flex: 3;
     margin: 0 0.5rem 0 0; 
     padding: 0 1rem;
     font-size: 1.2rem;
@@ -195,25 +210,13 @@ body {
       }
    }
   }
-// .is-already-done {
-//   opacity: 0.6;
-//   p {
-//   	&:before {
-//       content:"";
-//       background-color: black;
-//       position: absolute;
-//       display: block;
-//       top: 50%;
-//       left: 0;
-//       width: 50%;
-//       height: 0.5px;
-//     }
-//   }
-// }
-
-
-// @keyframes strikeitem {
-//   to {
-//   	width: 100%;
-//   }
-// }
+.edit-input {
+  width: 100%;
+  border-radius: .25rem;
+  border: 1px solid #9b9b9b;
+  display: block;
+  margin-left: .5rem;
+  padding: .5rem;
+  height: 29px;
+  font-size: 1rem;
+}

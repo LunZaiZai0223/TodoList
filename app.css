@@ -25,11 +25,21 @@ body ul li {
   background-color: #fff;
   border-radius: 0.25rem;
 }
+@media (max-width: 450px) {
+  .container {
+    margin: 2rem auto;
+  }
+}
 .container header {
   padding: 2rem 3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+@media (max-width: 450px) {
+  .container header {
+    padding: 1rem 1.5rem;
+  }
 }
 .container header .date {
   font-size: 3rem;
@@ -62,8 +72,16 @@ body ul li {
   transition: opacity 0.5s;
   position: relative;
 }
+@media (max-width: 450px) {
+  .container ul li {
+    padding: 1rem 1.5rem;
+  }
+}
 .container ul li:hover {
   box-shadow: 0 0 5px #9b9b9b;
+}
+.container ul .all-done {
+  display: block;
 }
 .container .content-btns-container {
   flex: 1;
@@ -84,14 +102,14 @@ body ul li {
   flex: 100 100 auto;
   position: relative;
 }
-.container ul li input {
+.container ul li input[type=checkbox] {
   position: relative;
   cursor: pointer;
   width: 29px;
   height: 29px;
   border-radius: 50%;
 }
-.container ul li input:after {
+.container ul li input[type=checkbox]:after {
   content: "";
   position: absolute;
   background-color: #fff;
@@ -99,7 +117,7 @@ body ul li {
   width: 29px;
   height: 29px;
 }
-.container ul li input:checked:after {
+.container ul li input[type=checkbox]:checked:after {
   content: "✔︎";
   color: #fff;
   background-color: #50e3a4;
@@ -126,6 +144,11 @@ body ul li {
   margin: 3rem 0;
   padding: 0 3rem;
 }
+@media (max-width: 450px) {
+  .container form {
+    padding: 0 1.5rem;
+  }
+}
 .container form label {
   display: block;
   width: 100%;
@@ -138,7 +161,8 @@ body ul li {
   display: flex;
 }
 .container form .add-container input {
-  flex: 1;
+  width: 100%;
+  flex: 3;
   margin: 0 0.5rem 0 0;
   padding: 0 1rem;
   font-size: 1.2rem;
@@ -179,6 +203,17 @@ body ul li {
   width: 100%;
   height: 0.5px;
   z-index: 999;
+}
+
+.edit-input {
+  width: 100%;
+  border-radius: 0.25rem;
+  border: 1px solid #9b9b9b;
+  display: block;
+  margin-left: 0.5rem;
+  padding: 0.5rem;
+  height: 29px;
+  font-size: 1rem;
 }
 
 /*# sourceMappingURL=app.css.map */
