@@ -19,5 +19,5 @@ https://lunzaizai0223.github.io/TodoList/
 目前的缺點：似乎太氾濫地使用 `HTML data attribute`了，但是我目前也想不到其他的解法等之後想到再來優化邏輯。
 
 ## 時程
-2021/10/09 完成第一版（無修改、無 localStorage、無登入系統）
+2021/10/09 完成第一版（無修改、無 localStorage、無登入系統）<br>
 2021/10/13 完成第二版（新增修改功能、任務結束後的 GIF、RWD 優化）
